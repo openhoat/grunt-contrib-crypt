@@ -1,6 +1,6 @@
 {
   "name":"grunt-contrib-crypt",
-  "version":"0.0.1",
+  "version":"0.0.2",
   "description":"Encrypt / decrypt files",
   "homepage":"https://github.com/openhoat/grunt-contrib-crypt",
   "main":"grunt.js",
@@ -29,7 +29,8 @@
   },
   "dependencies":{
     "colors":"0.6.0-1",
-    "grunt-lib-contrib":"0.3.1"
+    "grunt-lib-contrib":"0.3.1",
+    "kruptos":"0.0.1"
   },
   "devDependencies":{
     "grunt": "0.3.17",

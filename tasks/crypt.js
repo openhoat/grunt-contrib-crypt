@@ -1,19 +1,5 @@
 var path = require('path')
-  , crypto = require('crypto');
-
-function encryptText(text, key) {
-  var cipher = crypto.createCipher('aes-256-cbc', key)
-    , crypted = cipher.update(text, 'utf8', 'hex');
-  crypted += cipher.final('hex');
-  return crypted;
-}
-
-function decryptText(text, key) {
-  var decipher = crypto.createDecipher('aes-256-cbc', key)
-    , dec = decipher.update(text, 'hex', 'utf8');
-  dec += decipher.final('utf8');
-  return dec;
-}
+  , kruptosUtilCrypt = require('../node_modules/kruptos/lib/kruptos-util-crypt');
 
 module.exports = function (grunt) {
   "use strict";
@@ -33,7 +19,7 @@ module.exports = function (grunt) {
         try {
           grunt.log.write('Encrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
           content = grunt.file.read(srcFilePath);
-          encryptedContent = encryptText(content, cryptKey);
+          encryptedContent = kruptosUtilCrypt.encryptText(content, cryptKey);
           grunt.file.write(destFilePath, encryptedContent);
           grunt.log.ok();
         } catch (e) {
@@ -60,7 +46,7 @@ module.exports = function (grunt) {
         try {
           grunt.log.write('Decrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
           encryptedContent = grunt.file.read(srcFilePath);
-          content = decryptText(encryptedContent, cryptKey);
+          content = kruptosUtilCrypt.decryptText(encryptedContent, cryptKey);
           grunt.file.write(destFilePath, content);
           grunt.log.ok();
         } catch (e) {
