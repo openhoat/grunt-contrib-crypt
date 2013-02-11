@@ -19,9 +19,9 @@ Put this in your grunt config :
     crypt:{
       files:[                                   // files to process
         {
-          dir:'demo/src',                       // root dir of files to encrypt, or dest dir of files to decrypt
+          dir:'demo',                           // root dir of files to encrypt / decrypt
           include:'**/*.js',                    // pattern to include files
-          encryptedDir:'demo/encrypted'         // dest dir of files to encrypt, or root dir of files to decrypt
+          encryptedExtension:'.encrypted'       // extension used for encrypted files
         }
       ],
       options:{

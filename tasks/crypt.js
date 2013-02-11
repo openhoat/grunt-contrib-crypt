@@ -9,17 +9,17 @@ module.exports = function (grunt) {
       , cryptKey = options.key;
     files.forEach(function (file) {
       var srcDir = file.dir || 'src'
-        , destDir = file.encryptedDir || path.join('encrypted', srcDir)
+        , encryptedExtension = file.encryptedExtension || '.encrypted'
         , include = file.include || '*.js'
         , filePaths = grunt.file.expand({ cwd:srcDir }, include);
       filePaths.forEach(function (filePath) {
         var srcFilePath = path.join(srcDir, filePath)
-          , destFilePath = path.join(destDir, filePath)
-          , content, encryptedContent;
+          , destFilePath = srcFilePath + encryptedExtension
+          , decryptedContent, encryptedContent;
         try {
           grunt.log.write('Encrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
-          content = grunt.file.read(srcFilePath);
-          encryptedContent = kruptosUtilCrypt.encryptText(content, cryptKey);
+          decryptedContent = grunt.file.read(srcFilePath);
+          encryptedContent = kruptosUtilCrypt.encryptText(decryptedContent, cryptKey);
           grunt.file.write(destFilePath, encryptedContent);
           grunt.log.ok();
         } catch (e) {
@@ -35,19 +35,18 @@ module.exports = function (grunt) {
       , options = grunt.config('crypt').options
       , cryptKey = options.key;
     files.forEach(function (file) {
-      var destDir = file.dir || 'src'
-        , srcDir = file.encryptedDir || path.join('encrypted', destDir)
-        , include = file.include || '*.js'
-        , filePaths = grunt.file.expand({ cwd:srcDir }, include);
+      var srcDir = file.dir || 'src'
+        , encryptedExtension = file.encryptedExtension || '.encrypted'
+        , filePaths = grunt.file.expand({ cwd:srcDir }, '*' + encryptedExtension);
       filePaths.forEach(function (filePath) {
         var srcFilePath = path.join(srcDir, filePath)
-          , destFilePath = path.join(destDir, filePath)
-          , content, encryptedContent;
+          , destFilePath = srcFilePath.substring(0, srcFilePath.length - encryptedExtension.length)
+          , decryptedContent, encryptedContent;
         try {
           grunt.log.write('Decrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
           encryptedContent = grunt.file.read(srcFilePath);
-          content = kruptosUtilCrypt.decryptText(encryptedContent, cryptKey);
-          grunt.file.write(destFilePath, content);
+          decryptedContent = kruptosUtilCrypt.decryptText(encryptedContent, cryptKey);
+          grunt.file.write(destFilePath, decryptedContent);
           grunt.log.ok();
         } catch (e) {
           grunt.log.error();
