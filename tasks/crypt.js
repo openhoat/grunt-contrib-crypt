@@ -17,11 +17,10 @@ module.exports = function (grunt) {
           , destFilePath = srcFilePath + encryptedExtension
           , decryptedContent, encryptedContent;
         try {
-          grunt.log.write('Encrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
+          grunt.log.writeln('Encrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);
           decryptedContent = grunt.file.read(srcFilePath);
           encryptedContent = kruptosUtilCrypt.encryptText(decryptedContent, cryptKey);
           grunt.file.write(destFilePath, encryptedContent);
-          grunt.log.ok();
         } catch (e) {
           grunt.log.error();
           grunt.verbose.error(e);
@@ -43,11 +42,10 @@ module.exports = function (grunt) {
           , destFilePath = srcFilePath.substring(0, srcFilePath.length - encryptedExtension.length)
           , decryptedContent, encryptedContent;
         try {
-          grunt.log.write('Decrypting "' + srcFilePath + '" to "' + destFilePath + '"...');
+          grunt.log.writeln('Decrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);
           encryptedContent = grunt.file.read(srcFilePath);
           decryptedContent = kruptosUtilCrypt.decryptText(encryptedContent, cryptKey);
           grunt.file.write(destFilePath, decryptedContent);
-          grunt.log.ok();
         } catch (e) {
           grunt.log.error();
           grunt.verbose.error(e);

@@ -3,7 +3,7 @@
   "version":"0.4.0",
   "description":"Encrypt / decrypt files",
   "homepage":"https://github.com/openhoat/grunt-contrib-crypt",
-  "main":"grunt.js",
+  "main":"Gruntfile.js",
   "author":{
     "name":"Olivier Penhoat",
     "email":"openhoat@gmail.com"
