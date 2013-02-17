@@ -22,7 +22,7 @@ module.exports = function (grunt) {
           encryptedContent = kruptosUtilCrypt.encryptText(decryptedContent, cryptKey);
           grunt.file.write(destFilePath, encryptedContent);
         } catch (e) {
-          grunt.log.error();
+          grunt.log.error(e);
           grunt.verbose.error(e);
           grunt.fail.warn('Encrypt operation failed.');
         }
