@@ -1,6 +1,6 @@
 {
   "name":"grunt-contrib-crypt",
-  "version":"0.0.6",
+  "version":"0.0.7",
   "description":"Encrypt / decrypt files",
   "homepage":"https://github.com/openhoat/grunt-contrib-crypt",
   "main":"Gruntfile.js",

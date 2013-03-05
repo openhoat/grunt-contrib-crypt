@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       var srcDir = file.dir || 'src'
         , encryptedExtension = file.encryptedExtension || '.encrypted'
         , include = file.include || '*.js'
-        , filePaths = grunt.file.expand({ cwd:srcDir }, include);
+        , filePaths = grunt.file.expand({ filter:'isFile', cwd:srcDir }, include);
       filePaths.forEach(function (filePath) {
         var srcFilePath = path.join(srcDir, filePath)
           , destFilePath = srcFilePath + encryptedExtension
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
     files.forEach(function (file) {
       var srcDir = file.dir || 'src'
         , encryptedExtension = file.encryptedExtension || '.encrypted'
-        , filePaths = grunt.file.expand({ cwd:srcDir }, '*' + encryptedExtension);
+        , filePaths = grunt.file.expand({ filter:'isFile', cwd:srcDir }, '*' + encryptedExtension);
       filePaths.forEach(function (filePath) {
         var srcFilePath = path.join(srcDir, filePath)
           , destFilePath = srcFilePath.substring(0, srcFilePath.length - encryptedExtension.length)
