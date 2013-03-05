@@ -13,9 +13,12 @@ module.exports = function (grunt) {
         , include = file.include || '*.js'
         , filePaths = grunt.file.expand({ filter:'isFile', cwd:srcDir }, include);
       filePaths.forEach(function (filePath) {
-        var srcFilePath = path.join(srcDir, filePath)
-          , destFilePath = srcFilePath + encryptedExtension
-          , decryptedContent, encryptedContent;
+        var srcFilePath, destFilePath, decryptedContent, encryptedContent;
+        if (path.extname(filePath) === encryptedExtension) {
+          return;
+        }
+        srcFilePath = path.join(srcDir, filePath);
+        destFilePath = srcFilePath + encryptedExtension;
         try {
           grunt.log.writeln('Encrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);
           decryptedContent = grunt.file.read(srcFilePath);
