@@ -27,6 +27,7 @@ Put this in your grunt config :
       options:{
         key:grunt.cli.options.key || 'somekey'  // key used to encrypt / decrypt
                                                 // for security purpose, prefer to pass it through command line arguments
+        env:grunt.cli.options.env || 'env'      // used to include an environment prefix in included files
       }
     }
 
