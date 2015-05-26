@@ -1,4 +1,4 @@
-## grunt-contrib-crypt
+## crypto-task
 
 Grunt task to encrypt and decrypt files
 
