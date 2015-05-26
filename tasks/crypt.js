@@ -47,12 +47,10 @@ module.exports = function (grunt) {
         , encDir = file.encDir || srcDir
         , encryptedExtension = file.encryptedExtension || '.encrypted'
         , filePaths = grunt.file.expand({ filter:isFileAndNotInModules, cwd:encDir }, '**/*' + encryptedExtension);
-        console.log(srcDir, encDir, filePaths);
       filePaths.forEach(function (filePath) {
         var srcFilePath = path.join(encDir, filePath)
           , destFilePath = path.join(srcDir, filePath).substring(0, srcFilePath.length - encryptedExtension.length)
           , decryptedContent, encryptedContent;
-          console.log(srcFilePath, destFilePath);
         try {
           grunt.log.writeln('Decrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);
           encryptedContent = grunt.file.read(srcFilePath);
