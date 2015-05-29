@@ -16,7 +16,8 @@ module.exports = function (grunt) {
     crypt:{
       files:[
         {
-          dir:'demo',
+          dir:'demo/src',
+          encDir: 'demo/enc',
           include:'**/*.js',
           encryptedExtension:'.encrypted'
         }

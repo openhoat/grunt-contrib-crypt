@@ -14,6 +14,7 @@ module.exports = function (grunt) {
       , cryptKey = options.key;
     files.forEach(function (file) {
       var srcDir = file.dir || 'src'
+        , encDir = file.encDir || srcDir 
         , encryptedExtension = file.encryptedExtension || '.encrypted'
         , include = file.include || '*.js'
         , filePaths = grunt.file.expand({ filter:'isFile', cwd:srcDir }, include);
@@ -23,7 +24,7 @@ module.exports = function (grunt) {
           return;
         }
         srcFilePath = path.join(srcDir, filePath);
-        destFilePath = srcFilePath + encryptedExtension;
+        destFilePath = path.join(encDir, filePath) + encryptedExtension;
         try {
           grunt.log.writeln('Encrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);
           decryptedContent = grunt.file.read(srcFilePath);
@@ -43,11 +44,12 @@ module.exports = function (grunt) {
       , cryptKey = options.key;
     files.forEach(function (file) {
       var srcDir = file.dir || 'src'
+        , encDir = file.encDir || srcDir
         , encryptedExtension = file.encryptedExtension || '.encrypted'
-        , filePaths = grunt.file.expand({ filter:isFileAndNotInModules, cwd:srcDir }, '**/*' + encryptedExtension);
+        , filePaths = grunt.file.expand({ filter:isFileAndNotInModules, cwd:encDir }, '**/*' + encryptedExtension);
       filePaths.forEach(function (filePath) {
-        var srcFilePath = path.join(srcDir, filePath)
-          , destFilePath = srcFilePath.substring(0, srcFilePath.length - encryptedExtension.length)
+        var srcFilePath = path.join(encDir, filePath)
+          , destFilePath = path.join(srcDir, filePath).substring(0, srcFilePath.length - encryptedExtension.length)
           , decryptedContent, encryptedContent;
         try {
           grunt.log.writeln('Decrypting ' + srcFilePath.cyan + ' -> ' + destFilePath.cyan);

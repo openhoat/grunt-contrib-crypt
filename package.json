@@ -1,34 +1,40 @@
 {
-  "name":"grunt-contrib-crypt",
-  "version":"0.1.0",
-  "description":"Encrypt / decrypt files",
-  "homepage":"https://github.com/openhoat/grunt-contrib-crypt",
-  "main":"Gruntfile.js",
-  "author":{
-    "name":"Olivier Penhoat",
-    "email":"openhoat@gmail.com"
+  "name": "crypto-task",
+  "version": "0.1.2",
+  "description": "Encrypt / decrypt files",
+  "homepage": "https://github.com/FalloutX/crypto-task",
+  "main": "Gruntfile.js",
+  "author": {
+    "name": "Olivier Penhoat",
+    "email": "openhoat@gmail.com"
   },
-  "repository":{
-    "type":"git",
-    "url":"git://github.com/openhoat/grunt-contrib-crypt.git"
-  },
-  "bugs":{
-    "url":"https://github.com/openhoat/grunt-contrib-crypt/issues"
-  },
-  "licenses":[
+  "contributors": [
     {
-      "type":"EUPL",
-      "url":"https://github.com/openhoat/grunt-contrib-crypt/blob/master/EUPL-1.1.txt"
+      "name": "Inderjit Sidhu",
+      "email": "inderjitsidhu@outlook.com"
     }
   ],
-  "engines":{
-    "node":"*"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FalloutX/crypto-task"
   },
-  "dependencies":{
-    "kruptos":"0.0.3"
+  "bugs": {
+    "url": "https://github.com/FalloutX/crypto-task/issues"
   },
-  "devDependencies":{
-    "grunt":"0.4.0rc8",
-    "grunt-contrib-clean":"0.4.0rc6"
+  "licenses": [
+    {
+      "type": "EUPL",
+      "url": "https://github.com/FalloutX/crypto-task/blob/master/EUPL-1.1.txt"
+    }
+  ],
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "kruptos": "0.0.3"
+  },
+  "devDependencies": {
+    "grunt": "0.4.0rc8",
+    "grunt-contrib-clean": "0.4.0rc6"
   }
 }
